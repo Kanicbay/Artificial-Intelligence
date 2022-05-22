@@ -5,7 +5,6 @@
 package agentes;
 
 import agentesc.Contenedor;
-import contenidoSerializado.Sensores;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
@@ -15,7 +14,7 @@ import jade.lang.acl.ACLMessage;
  *
  * @author brian
  */
-public class Agente1 extends Agent{
+public class Agente3 extends Agent{
 
     @Override
     //Setup siempre se ejecuta primero
@@ -64,12 +63,13 @@ public class Agente1 extends Agent{
             --------------------------------------------------------*/
             //Se envia mensaje con tipo, alias receptor, mensaje, cod conversacion y el agente emisor
             //Sensor de temperatura
-            //Mensajes.enviar(ACLMessage.INFORM, "BuscarDatos", "40", "COD0102",getAgent()); <--
-            Mensajes.enviarS(ACLMessage.INFORM, "BuscarDatos", new Sensores("alto",40), "COD0102",getAgent()); // <--
+            //Alto Baja
+            //Mensajes.enviar(ACLMessage.INFORM, "BuscarDatos", "baja", "COD0302",getAgent()); <--
+            
             /*Recibir mensajes
             --------------------------------------------------------*/
-            ACLMessage acl = blockingReceive();
-            System.out.println(acl.getContent());
+            //ACLMessage acl = blockingReceive(); <--
+            //System.out.println(acl.getContent()); <--
         }
 
         @Override

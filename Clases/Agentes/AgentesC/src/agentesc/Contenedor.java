@@ -43,8 +43,10 @@ public class Contenedor {
         try {
             //Crear contenedor con alias, nombre clase a la que pertenece y conocimiento
             //Con el método start se inicia al agente
-            agentContainer.createNewAgent("ReceptorInfo", Agente1.class.getName(), new Object[]{this,1}).start();  //Envio el contenedor como conocimiento. 
             agentContainer.createNewAgent("BuscarDatos", Agente2.class.getName(), null).start();
+            agentContainer.createNewAgent("ReceptorInfo", Agente1.class.getName(), new Object[]{this,1}).start();  //Envio el contenedor como conocimiento. 
+            //agentContainer.createNewAgent("Ag3", Agente3.class.getName(), null).start();
+            
         } catch (StaleProxyException ex) {
             Logger.getLogger(Contenedor.class.getName()).log(Level.SEVERE, null, ex);
         }
