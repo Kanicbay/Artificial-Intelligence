@@ -5,8 +5,6 @@
 package agentes;
 
 import agentesc.Contenedor;
-import contenidoSerializado.Pagos;
-import contenidoSerializado.Ventas;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
 import jade.core.behaviours.CyclicBehaviour;
@@ -16,7 +14,7 @@ import jade.lang.acl.ACLMessage;
  *
  * @author brian
  */
-public class Agente3 extends Agent{
+public class Agente4 extends Agent{
 
     @Override
     //Setup siempre se ejecuta primero
@@ -57,28 +55,23 @@ public class Agente3 extends Agent{
             /*Aqui todo lo que necesite y hace el agente
             Como ANN, AG, Bayes, If else
             --------------------------------------------------------*/
-            //System.out.println(getLocalName());
+            //System.out.println("Agente4 - "+getLocalName());
             //terminado = true;       //Cambia el estado a terminado
             //doDelete();               //Mata al Agente
             
             /*Envio de mensajes
             --------------------------------------------------------*/
             //Se envia mensaje con tipo, alias receptor, mensaje, cod conversacion y el agente emisor
-            //Sensor de temperatura
-            //Alto Baja
-            //Mensajes.enviar(ACLMessage.INFORM, "BuscarDatos", "baja", "COD0302",getAgent()); //<--
+            //Recibido Temperatura y Estado de Riego
             
-            /*Contenido Serializado*/
-            // --> Pagos[] p = new Pagos[]{GUI};  --> Variables Globales
-            // --> Ventas[] p = new Ventas[]{GUI}; --> Variables Globales
-            // --> PagosVentas pv = --> Enviar la clase PagosVentas
-            Object[] pagosVentas = new Object[]{new Pagos(1, 1, 100, "2022-10-10"), new Ventas(1, 1, 20221, 100, true, "2022-10-01", "Producto 1 Descripcion")};
-            Mensajes.enviarS(ACLMessage.INFORM, "Unirinformacion", pagosVentas, "COD0302",getAgent());
+            ACLMessage acl = blockingReceive();
+            System.out.println(acl.getContent());
+            
+            Mensajes.enviar(ACLMessage.INFORM, "BuscarDatos", "Temperatura y Estado de Riego Recibidos", "COD0402",getAgent());
             
             /*Recibir mensajes
             --------------------------------------------------------*/
-            ACLMessage acl = blockingReceive(); //<--
-            System.out.println(acl.getContent()); //<--
+            
         }
 
         @Override

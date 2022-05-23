@@ -5,6 +5,7 @@
 package agentes;
 
 import agentesc.Contenedor;
+import contenidoSerializado.Cliente;
 import contenidoSerializado.Sensores;
 import jade.core.Agent;
 import jade.core.behaviours.Behaviour;
@@ -56,7 +57,8 @@ public class Agente1 extends Agent{
             /*Aqui todo lo que necesite y hace el agente
             Como ANN, AG, Bayes, If else
             --------------------------------------------------------*/
-            System.out.println(getLocalName());
+            //System.out.println(getLocalName());
+
             //terminado = true;       //Cambia el estado a terminado
             //doDelete();               //Mata al Agente
             
@@ -64,8 +66,10 @@ public class Agente1 extends Agent{
             --------------------------------------------------------*/
             //Se envia mensaje con tipo, alias receptor, mensaje, cod conversacion y el agente emisor
             //Sensor de temperatura
-            //Mensajes.enviar(ACLMessage.INFORM, "BuscarDatos", "40", "COD0102",getAgent()); <--
-            Mensajes.enviarS(ACLMessage.INFORM, "BuscarDatos", new Sensores("alto",40), "COD0102",getAgent()); // <--
+            //Mensajes.enviar(ACLMessage.INFORM, "BuscarDatos", "40", "COD0102",getAgent()); //<--
+            Cliente cliente = new Cliente("Brian", "Coyago", "Ladron de Guevara y Andalucia", "009999999", "brian.coyago@epn.edu.ec",
+                    "Quito", "Ecuador", 1, 2, 170170, 15, 5000);  //Objeto a enviar
+            Mensajes.enviarS(ACLMessage.INFORM, "Unirinformacion", cliente, "COD0102", getAgent()); // <--
             /*Recibir mensajes
             --------------------------------------------------------*/
             ACLMessage acl = blockingReceive();
